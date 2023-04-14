@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage</title>
+    <script>
+
+        var zero = '{{ ja_cadastrado }}'
+        
+         function showWarning(zero) {
+            alert('Pokémon já cadastrado')
+        }
+        if(zero == "0") {
+            showWarning(zero)
+        }
+    </script>
+</head>
+<body>
+    <h1>Essa é a página inicial do sistema de armazenamento</p>
+    <p>Os Pokémons cadastrados são:</p>
+    <ul>
+        {% for c in listagem %}
+            <li>Id: {{c['id']}} Nome: {{c['nome']}}</li>
+        {% endfor %}
+    </ul>
+    
+    
+    <button onclick="window.location.href= '/cadastro'">Cadastrar novo</button>
+</body>
+</html>
