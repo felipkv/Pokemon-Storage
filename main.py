@@ -20,10 +20,6 @@ class Pokemon(db.Model):
 with app.app_context():
     db.create_all()
 
-#lista = [{"id": 1, "nome": "Articuno", "tipo": "Voador/Gelo"},
-#         {"id": 2, "nome": "Zapdos", "tipo": "Voador/Elétrico"},
-#         {"id": 3, "nome": "Moltres", "tipo": "Voador/Fogo"}]
-
 
 @app.route("/")
 def start():
