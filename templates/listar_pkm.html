@@ -26,7 +26,10 @@
         {% endfor %}
     </ul>
     
-    
+    <form action="/buscar" method="POST">
+        <input type="text" id="form_name" name="nome"><br>
+        <input type="submit" id="form_submit">
+    </form>
     <button onclick="window.location.href= '/cadastro'">Cadastrar novo</button>
 </body>
 </html>

@@ -45,7 +45,12 @@ def inserir_pkm():
     db.session.commit()
     return redirect("/")
     
-    
+@app.route("/buscar", methods=["POST"])
+def buscar_pkm():   
+    nome = request.form['nome']
+    #buscar = Pokemon.query.filter(Pokemon.nome == nome).first()
+    buscar = Pokemon.query.filter_by(nome=nome).first()
+    return render_template("buscar_pkm.html", buscar = buscar)
 
 if __name__ == "__main__":
     app.run(host = "localhost", debug = True)
