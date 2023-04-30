@@ -50,7 +50,24 @@ def buscar_pkm():
     nome = request.form['nome']
     #buscar = Pokemon.query.filter(Pokemon.nome == nome).first()
     buscar = Pokemon.query.filter_by(nome=nome).first()
+    print(buscar)
     return render_template("buscar_pkm.html", buscar = buscar)
+
+@app.route("/editar", methods=["POST"])
+def editar_pkm():
+    if request.form['_method'] == 'PUT':
+        old_nome = request.form['old_nome']
+        nome = request.form['nome']
+        tipo = request.form['tipo']
+        buscar = Pokemon.query.filter_by(nome=old_nome).first()
+        print(buscar)
+        buscar.nome = nome
+        buscar.tipo = tipo
+
+        db.session.commit()
+
+        return redirect("/")
+
 
 if __name__ == "__main__":
     app.run(host = "localhost", debug = True)

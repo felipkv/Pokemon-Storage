@@ -7,6 +7,15 @@
     <title>Buscar Pokemon</title>
 </head>
 <body>
-    <h1>Nome: {{buscar['nome']}} - Tipo: {{buscar['tipo']}}</h1>
+    <form method="POST" action="/editar">
+        <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="old_nome" value="{{ buscar['nome'] }}">
+        <label for="name">Name:</label>
+        <input type="text" id="nome" name="nome" value="{{ buscar['nome'] }}" required>
+        <label for="description">Description:</label>
+        <input type="text" id="tipo" name="tipo" value="{{ buscar['tipo'] }}" required>
+        <button type="submit">Save Changes</button>
+    </form>
+
 </body>
 </html>
