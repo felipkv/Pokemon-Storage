@@ -38,7 +38,7 @@ def inserir_pkm():
     tipo = request.form['tipo']
     for pkm in listar:
         if nome == pkm.nome:
-            return render_template("listar_pkm.html", ja_cadastrado = "0", listagem = listar)
+            return render_template("listar_pkm.html", ja_cadastrado = "ja_cadastrado", listagem = listar)
         
     cadastrar = Pokemon(nome = nome, tipo = tipo)
     db.session.add(cadastrar)
@@ -50,6 +50,9 @@ def buscar_pkm():
     nome = request.form['nome']
     #buscar = Pokemon.query.filter(Pokemon.nome == nome).first()
     buscar = Pokemon.query.filter_by(nome=nome).first()
+    if not buscar:
+        listar = Pokemon.query.all()
+        return render_template("listar_pkm.html", not_found = "not_found", listagem = listar)
     
     return render_template("buscar_pkm.html", buscar = buscar)
 

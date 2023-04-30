@@ -7,14 +7,18 @@
     <title>Storage</title>
     <script>
 
+
         var zero = '{{ ja_cadastrado }}'
+        var zero_dois = '{{ not_found }}'
         
-         function showWarning(zero) {
+
+        if(zero) {
             alert('Pokémon já cadastrado')
         }
-        if(zero == "0") {
-            showWarning(zero)
+        if(zero_dois) {
+            alert('Pokémon não encontrado')
         }
+        
     </script>
 </head>
 <body>
