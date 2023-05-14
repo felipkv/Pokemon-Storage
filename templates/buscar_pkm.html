@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscar Pokemon</title>
+    
 </head>
 <body>
     <form method="POST" action="/editar">
@@ -16,7 +17,25 @@
         <input type="text" id="tipo" name="tipo" value="{{ buscar['tipo'] }}" required>
         <button type="submit">Save Changes</button>
         <button onclick="window.location.href= '/'">Voltar</button>
+        <button type="submit" id="botao_deletar" formaction="/deletar">Deletar</button>
     </form>
-
+    
 </body>
+
+<script>
+
+    var botao_deletar = document.getElementById('botao_deletar')
+
+    botao_deletar.addEventListener('click', function(event) {
+
+        var confirmar = confirm('Tem certeza que gostaria de deletar o registro desse Pokémon?')
+
+        if(!confirmar) {
+            event.preventDefault()
+        }
+    })
+
+
+
+</script>
 </html>

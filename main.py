@@ -69,7 +69,16 @@ def editar_pkm():
         db.session.commit()
 
         return redirect("/")
+    
+@app.route("/deletar", methods=["POST"])
+def deletar_pkm():
+    nome = request.form['nome']
+    buscar = Pokemon.query.filter_by(nome=nome).first() ## para poder mexer no banco é necessário sempre uma instância da entrada que você quer, e não a string direto vindo do form. Por isso a query
+    
+    db.session.delete(buscar)
+    db.session.commit()
 
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(host = "localhost", debug = True)
