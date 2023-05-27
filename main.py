@@ -1,12 +1,14 @@
 import sqlite3
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from google_images_search import GoogleImagesSearch
 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///storage_pkm.db'
 db = SQLAlchemy(app)
 
+gis = GoogleImagesSearch('AIzaSyCGwcNSo_Tb0lFiJErvDgIJ2HWzh8DhOpA', '336449db29c6e4076')
 
 class Pokemon(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -54,7 +56,16 @@ def buscar_pkm():
         listar = Pokemon.query.all()
         return render_template("listar_pkm.html", not_found = "not_found", listagem = listar)
     
-    return render_template("buscar_pkm.html", buscar = buscar)
+    query = request.form['nome']
+    search_params = {
+        'q': query,
+        'num': 1,
+        'fileType': 'png'
+    }
+    gis.search(search_params=search_params)
+    first_result = gis.results()[0].url
+
+    return render_template("buscar_pkm.html", buscar = buscar, google_search = first_result)
 
 @app.route("/editar", methods=["POST"])
 def editar_pkm():

@@ -1,26 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscar Pokemon</title>
+{% extends "model.html" %}
+{% block titulo1 %} Buscar Pokémon {% endblock %}
+
+{% block conteudo %} 
+
+<div class="edit-container">
+    <div class="img-container">
+        <img src="{{google_search}}">
+    </div>
     
-</head>
-<body>
     <form method="POST" action="/editar">
         <input type="hidden" name="_method" value="PUT">
         <input type="hidden" name="old_nome" value="{{ buscar['nome'] }}">
-        <label for="name">Name:</label>
-        <input type="text" id="nome" name="nome" value="{{ buscar['nome'] }}" required>
-        <label for="description">Description:</label>
-        <input type="text" id="tipo" name="tipo" value="{{ buscar['tipo'] }}" required>
-        <button type="submit">Save Changes</button>
-        <button onclick="window.location.href= '/'">Voltar</button>
-        <button type="submit" id="botao_deletar" formaction="/deletar">Deletar</button>
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" value="{{ buscar['nome'] }}" required>
+            <label for="tipo">Tipo:</label>
+            <input type="text" id="tipo" name="tipo" value="{{ buscar['tipo'] }}" required>
+        </div>
+        <div class="form-group-btns">
+            <button type="submit">Salvar Mudanças</button>
+            <button type="submit" id="botao_deletar" formaction="/deletar">Deletar</button>
+            <button type="button" onclick="window.location.href= '/'">Voltar</button>
+        </div>
+        
     </form>
-    
-</body>
+</div>
 
 <script>
 
@@ -35,7 +39,8 @@
         }
     })
 
-
-
 </script>
-</html>
+
+
+{% endblock %}
+

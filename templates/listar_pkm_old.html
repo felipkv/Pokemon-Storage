@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage</title>
+    <script>
+
+
+        var zero = '{{ ja_cadastrado }}'
+        var zero_dois = '{{ not_found }}'
+        
+
+        if(zero) {
+            alert('Pokémon já cadastrado')
+        }
+        if(zero_dois) {
+            alert('Pokémon não encontrado')
+        }
+
+    </script>
+</head>
+<body>
+    <h1>Essa é a página inicial do sistema de armazenamento</p>
+    <p>Os Pokémons cadastrados são:</p>
+    <ul>
+        {% for c in listagem %}
+            <li>Nome: {{c['nome']}} - Tipo: {{c['tipo']}}</li>
+        {% endfor %}
+    </ul>
+    
+    <form action="/buscar" method="POST">
+        <input type="text" id="form_name" name="nome"><br>
+        <button type="submit" id="form_submit">Pesquisar</button>
+    </form>
+    <button onclick="window.location.href= '/cadastro'">Cadastrar novo</button>
+</body>
+</html>

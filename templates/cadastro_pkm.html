@@ -1,16 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar</title>
-</head>
-<body>
+{% extends "model.html" %}
+{% block titulo1 %} Cadastrar novo Pokémon {% endblock %}
+
+{% block conteudo %} 
+
+<div class="edit-container">
     <form action="/" method="POST">
-        <input type="text" id="form_name" name="nome"><br>
-        <input type="text" id="form_type" name="tipo"><br>
-        <input type="submit" id="form_submit">
+        <div class="form-group">
+            <label for="form_name">Nome:</label>
+            <input type="text" id="form_name" name="nome" required>
+            <label for="form_type">Tipo:</label>
+            <input type="text" id="form_type" name="tipo" required>
+        </div>
+
+        <div class="form-group-btns">
+        <button type="submit" id="form_submit">Cadastrar</button>
+        <button type="button" onclick="window.location.href= '/'">Voltar</button>
+        </div>
     </form>
-</body>
-</html>
+    
+</div>
+
+{% endblock %}
